@@ -6,4 +6,14 @@ using namespace std;
 
 int main()
 {
+  string S;
+  string ans = "";
+  cin >> S;
+  rep(i, 0, S.size())
+  {
+    if (S[i] != '.')
+      ans += S[i];
+  }
+
+  cout << ans << endl;
 }
