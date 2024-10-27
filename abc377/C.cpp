@@ -6,29 +6,20 @@ using namespace std;
 
 int main()
 {
-  ll ans = 0;
+
   vector<vector<ll>> di = {{2, 1}, {1, 2}, {-1, 2}, {-2, 1}, {-2, -1}, {-1, -2}, {1, -2}, {2, -1}};
   ll n, m;
   cin >> n >> m;
-  vector<vector<int>> bit(n, vector<int>(n));
 
-  vector<pair<int, int>> temp(m);
+  set<pair<int, int>> temp;
+
   rep(i, 0, m)
   {
     ll a, b;
     cin >> a >> b;
     a--;
     b--;
-    bit[a][b] = 1;
-    temp[i].first = a;
-    temp[i].second = b;
-  }
-
-  rep(i, 0, m)
-  {
-    int a = temp[i].first;
-    int b = temp[i].second;
-
+    temp.insert(make_pair(a, b));
     for (auto var : di)
     {
       ll da = a + var[0];
@@ -37,13 +28,9 @@ int main()
         continue;
       if (db < 0 || db >= n)
         continue;
-      if (bit[da][db])
-        continue;
-      ans++;
-
-      bit[da][db] = 1;
+      temp.insert(make_pair(da, db));
     }
   }
-  ans = n * n - ans;
-  cout << ans - m << endl;
+  ll ans = n * n - temp.size();
+  cout << ans << endl;
 }
