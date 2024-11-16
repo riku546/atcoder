@@ -13,6 +13,5 @@ int main()
   char n1 = sn[1];
   char n2 = sn[2];
   
-  
   cout << n1 << n2 << n0 << ' ' << n2 << n0 << n1 << endl;
 }
