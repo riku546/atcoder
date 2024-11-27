@@ -4,31 +4,45 @@ using ll = long long;
 using ull = unsigned long long;
 using namespace std;
 
-int main(){
-  int n , k ;
+int main()
+{
+  int n, k;
   string s;
   cin >> n >> k >> s;
+  int one_cnt = 0;
   int prev_one = -10;
-  rep(i , 0 , n) {    
-    if(i == 0 && s[i] == '1' && s[i + 1] == '0') {
-      prev_one = 0;
-      
-    }
-    int one_cnt = 0;
-    if(s[i] == '1') {
-      rep(j , i + 1 , n) {
-        if(s[j] != '1' || j == n - 1) {
-          if(j - i > 1 ) {
-            if(prev_one == -10 ) prev_one = i;
-            rep(m , i , j + 1) {
-              
-              swap(s[prev_one] , s[m]);
+  rep(i, 0, n)
+  {
+  
 
+    if (s[i] == '1')
+    {      
+  
+      one_cnt++;      
+      if(one_cnt == k){
+        prev_one++;
+        
+        rep(j , i + 1 , n){
+          if(s[j] == '0' || j == n - 1) {
+            rep(m , i , j ){
+
+              swap(s[m] , s[prev_one]);
+              
               prev_one++;
             }
-            
-          
+            break;
           }
+        }
+        break;
+      }
+
+
+      rep(j, i + 1, n)
+      {
+        if (s[j] == '1')
+          prev_one = j;
+        else
+        {
           i = j - 1;
           break;
         }
@@ -36,4 +50,5 @@ int main(){
     }
   }
   cout << s << endl;
+
 }
